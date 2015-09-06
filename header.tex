@@ -1,0 +1,96 @@
+%This work is licensed under the Creative Commons
+%Attribution-ShareAlike 4.0 International License. To view a copy of
+%this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or
+%send a letter to Creative Commons, PO Box 1866, Mountain View, CA
+%94042, USA.
+
+%\documentclass[gray,handout, pdftex, 11pt]{beamer}
+%\documentclass[handout, pdftex, 11pt]{beamer}
+
+\documentclass[pdftex, 11pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+%\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{acronym}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{shapes, chains, scopes, shadows, positioning, arrows,
+  decorations.pathmorphing, calc}
+
+\colorlet{c1}{green!20}
+\colorlet{c2}{blue!10}
+\colorlet{drawColor}{black!50}
+\colorlet{commentColor}{green!70!black!90}
+
+\tikzstyle{oval}=[ellipse, align=center, drop shadow, draw=drawColor, fill=white]
+\tikzstyle{rect}=[rectangle, rounded corners=2pt, align=center, drop
+shadow, draw=drawColor, fill=white]
+\tikzstyle{comment}=[text=commentColor,font=\itshape]
+\tikzstyle{textLab}=[]
+\tikzstyle{arrow}=[->, very thick, >=stealth', draw=black!80]
+\tikzstyle{fStartEnd}=[ellipse, align=center, drop shadow, draw=drawColor, fill=white]
+\tikzstyle{fInput}=[trapezium, trapezium left angle=70, trapezium right angle=110,
+align=center, drop shadow, draw=drawColor, fill=white]
+\tikzstyle{fProcess}=[rectangle, align=center, drop shadow, draw=drawColor, fill=white]
+\tikzstyle{fSelection}=[diamond, shape aspect=3, align=center, drop
+shadow, draw=drawColor, fill=white]
+\tikzstyle{fOutput}=[tape, tape bend top=none, align=center, drop shadow, draw=drawColor, fill=white]
+\tikzstyle{mem}=[rectangle, align=center, draw=drawColor, fill=white]
+
+
+
+
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=links,urlcolor=links}
+
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+
+\mode<presentation>{
+  %-------------------------1
+  \usetheme{Boadilla}
+  \usecolortheme{beaver}
+  %-------------------------1
+  %-------------------------2
+  %\usetheme{Goettingen}
+  %\usecolortheme{sidebartab}
+  %-------------------------2
+  %\useoutertheme[right]{sidebar}
+  %\usefonttheme{default}
+  \setbeamercovered{transparent}
+  %\setbeameroption{show notes on second screen=right}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{footline}{}
+
+  \bibliographystyle{abbrv}  
+  %\renewcommand\bibfont{\scriptsize}
+  \setbeamertemplate{bibliography item}{\textbullet}
+  \setbeamertemplate{itemize item}{\checkmark}
+  \setbeamertemplate{itemize subitem}{-}
+  \setbeamertemplate{enumerate items}[default]
+  \setbeamertemplate{sections/subsections in toc}[square]
+}
+
+\subtitle{Logical Computational Thinking}
+\institute[Tecnológico de Monterrey]{
+  \includegraphics[width=5cm]{img/logoTEC.jpg}\\[5mm]
+  \includegraphics[width=1cm]{img/logoLEO.jpg}
+  Scuola Leonardo Da Vinci
+}
+
+\author[Stefano Martina]{
+  %\\[0.2cm]
+  \textbf{Stefano MARTINA}\\
+  {\small stefano.martina@gmail.com}
+}
+
+\titlegraphic{\tiny
+  \href{http://creativecommons.org/licenses/by-sa/4.0/}{\includegraphics[width=1cm]{img/logoCC.png}}
+  This work is licensed under a
+  \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative
+    Commons Attribution-ShareAlike 4.0 International License}.}
