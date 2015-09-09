@@ -14,6 +14,7 @@
 \usepackage{lmodern}
 %\usepackage[italian]{babel}
 \usepackage{graphicx}
+\usepackage{multirow}
 \usepackage{listings}
 \usepackage{microtype}
 \usepackage{acronym}
@@ -26,6 +27,7 @@
 \colorlet{c2}{blue!10}
 \colorlet{drawColor}{black!50}
 \colorlet{commentColor}{green!70!black!90}
+\colorlet{codeBgColor}{yellow!50}
 
 \tikzstyle{oval}=[ellipse, align=center, drop shadow, draw=drawColor, fill=white]
 \tikzstyle{rect}=[rectangle, rounded corners=2pt, align=center, drop
@@ -53,7 +55,8 @@ shadow, draw=drawColor, fill=white]
    commentstyle=\color{green}\ttfamily,
    morecomment=[l][\color{magenta}]{\#},
    % breaklines=false,
-    breaklines=true, breakatwhitespace=false,
+   breaklines=true, breakatwhitespace=false,
+   postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}},
    frameround=fttt,
    frame=trBL,
    backgroundcolor=\color{yellow!20},
@@ -63,7 +66,9 @@ shadow, draw=drawColor, fill=white]
    numberfirstline=true,
    numberstyle=\tiny\color{black!50},
    xleftmargin=2em,
-   framexleftmargin=1.5em
+   framexleftmargin=1.5em,
+   % rulesepcolor=\color{gray},
+   rulecolor=\color{black}
    % linewidth=8cm,
 }
 
@@ -76,8 +81,19 @@ shadow, draw=drawColor, fill=white]
 }{}
 
 \newcommand{\cfile}[2][]{
-  \lstinputlisting[style=customc, #1]{#2}
+  \lstinputlisting[style=customc, title={\texttt{\detokenize{#2}}}, #1]{#2}
 }
+
+\newcommand{\cc}[2][]{
+  \colorbox{codeBgColor}{
+    \lstinline[style=customc,#1]`#2`
+  }
+}
+
+\graphicspath{{img/}}
+\lstset{inputpath=../cSrc/}
+
+\newcommand{\me}{\mathrm{e}}
 
 \definecolor{links}{HTML}{2A1B81}
 \hypersetup{colorlinks,linkcolor=links,urlcolor=links}

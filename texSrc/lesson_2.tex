@@ -88,7 +88,7 @@
   \frametitle{C language}
   \begin{figure}[h!]
     \centering
-    \includegraphics[width=5cm]{img/ken_n_dennis.jpg}
+    \includegraphics[width=5cm]{ken_n_dennis.jpg}
     \caption{Ken Thompson and Dennis Ritchie}
   \end{figure}
   \begin{block}{History}
@@ -101,14 +101,133 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Basis}
+  \frametitle{Basics}
+  \begin{block}{Blocks}
     \begin{cblock}
-#include<stdio.h>  //library 
-
-void main() {  //begin of main
-  printf("Hello world!\n");
+{
+  ...
 }
-\end{cblock}
-\cfile{../cSrc/hello_world.c}
+    \end{cblock}
+    \begin{itemize}
+    \item Good practice to \alert{indent} the code to the right every
+      time a block is open, and to the left when is closed.
+    \end{itemize}
+  \end{block}
+  \begin{block}{Comments}
+    \begin{cblock}
+//Single line comment
+
+/* Multiple
+lines
+comments */
+    \end{cblock}
+  \end{block}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Main and libraries}
+  \begin{block}{Libraries}
+    \begin{cblock}
+#include<stdio.h>
+#include<math.h>      
+    \end{cblock}
+    \begin{itemize}
+    \item For including code defined elsewhere.
+    \item Can be custom libraries or standard libraries like:
+      \begin{itemize}
+      \item \cc{stdio.h} stands for \emph{STandard Input Output} and
+        provide basic interface with the terminal;
+      \item \cc{math.h} provide some useful mathematical functions,
+        like \cc{pow} and \cc{sqrt}.
+      \end{itemize}
+    \item The \cc{#include} directives must be write on top of the
+      source file (before the main)
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{block}{Main}
+    \begin{itemize}
+    \item Is the entry point for the program.
+    \end{itemize}
+    \begin{cblock}
+void main() {
+  ...
+}
+    \end{cblock}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example}
+  \cfile{hello_world.c}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Variables}
+  \begin{block}{Initialization}
+    \begin{cblock}
+int var1;            //default initial value
+float var2 = 3.1415; //custom initial value
+    \end{cblock}
+  \end{block}
+  \begin{itemize}
+  \item C is \alert{case sensitive}, \cc{int} $\neq$ \cc{Int} $\neq$ \cc{INT}.
+  \item Allowed names can contains \cc{[A-Z,a-z,0-9,_]}, cannot begin
+    with a number.
+  \item Good practices are: to use \alert{camel case} or \cc{_} for composed
+    words, and to start with
+    \alert{lower case}. I.e. \cc{camelCaseExample}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Variable types}
+  \begin{block}{Integer}
+    \begin{tabular}{|l|l|r|r|}
+      \hline
+      \textbf{type} & \textbf{size} & \textbf{min value} & \textbf{max value} \\
+      \hline
+      \hline
+      \cc{char} & 1 byte & -128 & 127 \\
+      \hline
+      \cc{short} & 2 bytes & -32,768 & 32,767 \\
+      \hline
+      \cc{int} & 4 bytes & -2,147,483,648 & 2,147,483,647 \\
+      \hline
+      \cc{long} & 8 bytes & \tiny -9,223,372,036,854,775,808 & \tiny 9,223,372,036,854,775,807\\
+      \hline
+      \hline
+      \cc{unsigned char} & 1 byte & 0 & 255 \\
+      \hline
+      \cc{unsigned short} & 2 bytes & 0 & 65,535 \\
+      \hline
+      \cc{unsigned int} & 4 bytes & 0 & 4,294,967,295 \\
+      \hline
+      \cc{unsigned long} & 8 bytes & 0 & \tiny 18,446,744,073,709,551,615 \\
+      \hline
+    \end{tabular}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Variable types}
+  \begin{block}{Floating point}
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+      \textbf{type} & \textbf{size} & \textbf{min value} & \textbf{max value} & \textbf{epsilon} \\
+      \hline
+      \hline
+      \cc{float} & 4 bytes & \tiny $1.175494\me^{-38}$ & \tiny $3.402823\me^{38}$
+      & \tiny $1.192093\me^{-07}$ \\
+      \hline
+      \cc{double} & 8 bytes & \tiny $2.225074\me^{-308}$ & \tiny $1.797693\me^{308}$ & \tiny $2.220446\me^{-16}$ \\
+      \hline
+      \cc{long double} & 16 bytes & \tiny $3.362103\me^{-4932}$ & \tiny $1.189731\me^{4932}$ & \tiny $1.084202\me^{-19}$ \\
+      \hline
+    \end{tabular}
+  \end{block}
+\end{frame}
+
 \end{document}
