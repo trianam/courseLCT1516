@@ -1,3 +1,6 @@
+## C object files
+*.o
+
 ## Emacs temporary files
 *~
 
@@ -9,7 +12,8 @@
 *.fls
 *.out
 *.toc
-/auto/
+texSrc/auto/
+#texSrc/*.pdf
 
 ## Intermediate documents:
 *.dvi

@@ -14,6 +14,7 @@
 \usepackage{lmodern}
 %\usepackage[italian]{babel}
 \usepackage{graphicx}
+\usepackage{listings}
 \usepackage{microtype}
 \usepackage{acronym}
 \usepackage{array}
@@ -32,6 +33,7 @@ shadow, draw=drawColor, fill=white]
 \tikzstyle{comment}=[text=commentColor,font=\itshape]
 \tikzstyle{textLab}=[]
 \tikzstyle{arrow}=[->, very thick, >=stealth', draw=black!80]
+\tikzstyle{darrow}=[->, dash pattern=on 3pt off2pt, very thick, >=stealth', draw=black!80]
 \tikzstyle{fStartEnd}=[ellipse, align=center, drop shadow, draw=drawColor, fill=white]
 \tikzstyle{fInput}=[trapezium, trapezium left angle=70, trapezium right angle=110,
 align=center, drop shadow, draw=drawColor, fill=white]
@@ -40,9 +42,42 @@ align=center, drop shadow, draw=drawColor, fill=white]
 shadow, draw=drawColor, fill=white]
 \tikzstyle{fOutput}=[tape, tape bend top=none, align=center, drop shadow, draw=drawColor, fill=white]
 \tikzstyle{mem}=[rectangle, align=center, draw=drawColor, fill=white]
+\tikzstyle{clo}=[cloud, aspect=2, align=center, drop shadow, draw=drawColor, fill=white]
 
+\lstdefinestyle{customc}{
+   language=C,
+   % basicstyle=\small\ttfamily\bfseries,
+   basicstyle=\ttfamily,
+   keywordstyle=\color{blue}\ttfamily,
+   stringstyle=\color{red}\ttfamily,
+   commentstyle=\color{green}\ttfamily,
+   morecomment=[l][\color{magenta}]{\#},
+   % breaklines=false,
+    breaklines=true, breakatwhitespace=false,
+   frameround=fttt,
+   frame=trBL,
+   backgroundcolor=\color{yellow!20},
+   numbers=left,
+   stepnumber=1,    
+   firstnumber=1,
+   numberfirstline=true,
+   numberstyle=\tiny\color{black!50},
+   xleftmargin=2em,
+   framexleftmargin=1.5em
+   % linewidth=8cm,
+}
 
+\lstnewenvironment{cblock}[1][]
+{
+  \lstset{
+    style=customc,
+    #1
+  }
+}{}
 
+\newcommand{\cfile}[2][]{
+  \lstinputlisting[style=customc, #1]{#2}
+}
 
 \definecolor{links}{HTML}{2A1B81}
 \hypersetup{colorlinks,linkcolor=links,urlcolor=links}
