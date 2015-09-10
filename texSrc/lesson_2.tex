@@ -170,6 +170,7 @@ void main() {
     \begin{cblock}
 int var1;            //default initial value
 float var2 = 3.1415; //custom initial value
+int var3, var4, var5;//multiple initialization
     \end{cblock}
   \end{block}
   \begin{itemize}
@@ -179,7 +180,26 @@ float var2 = 3.1415; //custom initial value
   \item Good practices are: to use \alert{camel case} or \cc{_} for composed
     words, and to start with
     \alert{lower case}. I.e. \cc{camelCaseExample}.
+  \item Also when possible define variables on method begin.
   \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Variables}
+    \begin{block}{Assignation}
+    \begin{cblock}
+var1 = 42;
+    \end{cblock}
+    \begin{itemize}
+    \item Is possible to use also \alert{expressions} on the right of
+      =
+    \item Also with other variables or the same variable.
+      \begin{cblock}
+var3 = var4 + var5;
+var3 = var3 - 1;
+      \end{cblock}
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}
@@ -209,6 +229,9 @@ float var2 = 3.1415; //custom initial value
       \hline
     \end{tabular}
   \end{block}
+  \begin{itemize}
+  \item \cc{char} is used also for the characters of the \alert{ascii} table.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -228,6 +251,171 @@ float var2 = 3.1415; //custom initial value
       \hline
     \end{tabular}
   \end{block}
+  \begin{block}{Boolean}
+    \begin{itemize}
+    \item Is possible to use the type \cc{bool}, and the values
+      \cc{true} and \cc{false}.
+    \item You need to add \cc{\#include<stdbool.h>}.
+    \item Not really useful because you can use any integer type with
+      the values:
+      \begin{itemize}
+      \item $0$ for false;
+      \item $\neq 0$ for true.
+      \end{itemize}
+    \end{itemize}
+  \end{block}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Operators}
+  \begin{block}{Arithmetic}
+    In priority order:
+    \begin{itemize}
+    \item \cc{*}, \cc{/}, \cc{\%};
+    \item \cc{+}, \cc{-};
+    \end{itemize}
+  \end{block}
+  \begin{block}{Logic}
+    \begin{itemize}
+    \item \cc{&&}, \cc{||};
+    \item \cc{!};
+    \item \cc{==}, \cc{!=}, \cc{<}, \cc{>}, \cc{<=}, \cc{>=}
+    \end{itemize}
+  \end{block}
+  \begin{itemize}
+  \item Is possible to make groups with \cc{(} and \cc{)}, i.e.:
+    \begin{cblock}
+(a+b)*c
+    \end{cblock}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Selections}
+  \begin{center}
+    \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
+      \node(start) [fStartEnd] {Start};
+      \node(selection) [fSelection, below=of start] {\cc{Cond}$ == true$?};
+      \draw [arrow] (start) -- (selection);
+      \node(trueBlock) [fProcess, below=of selection] {\cc{trueBlock}};
+      \draw [arrow] (selection) -- node [near start] {yes} (trueBlock);
+      \node(falseBlock) [fProcess, right=10mm of trueBlock] {\cc{falseBlock}};
+      \draw [arrow] (selection) -| node [near start] {no} (falseBlock);
+      \node(end) [fStartEnd, below=of trueBlock] {End};
+      \draw [arrow] (trueBlock) -- (end);
+      \draw [arrow] (falseBlock) |- ($ (end.north) + (0,2mm) $);
+    \end{tikzpicture}
+  \end{center}  
+  \begin{cblock}
+if(cond) {
+  trueBlock;
+} else {
+  falseBlock;
+}
+  \end{cblock}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Selections}
+  The \cc{else} block is optional.
+  \begin{center}
+    \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
+      \node(start) [fStartEnd] {Start};
+      \node(selection) [fSelection, below=of start] {\cc{Cond}$ == true$?};
+      \draw [arrow] (start) -- (selection);
+      \node(trueBlock) [fProcess, below=of selection] {\cc{trueBlock}};
+      \draw [arrow] (selection) -- node [near start] {yes} (trueBlock);
+      \node(end) [fStartEnd, below=of trueBlock] {End};
+      \draw [arrow] (trueBlock) -- (end);
+      \draw [arrow] (selection)
+      -- node [near start] {no} ($ (selection.east) + (5mm,0) $)
+      |- ($ (end.north) + (0,2mm) $);
+    \end{tikzpicture}
+  \end{center}  
+  \begin{cblock}
+if(cond) {
+  trueBlock;
+}
+  \end{cblock}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{While iteration}
+  \begin{center}
+    \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
+      \node(start) [fStartEnd] {Start};
+      \node(selection) [fSelection, below=of start] {\cc{Cond}$ == true$?};
+      \draw [arrow] (start) -- (selection);
+      \node(iterBlock) [fProcess, below=of selection] {\cc{iterBlock}};
+      \draw [arrow] (selection) -- node [near start] {yes} (iterBlock);
+      \node(end) [fStartEnd, below=15mm of iterBlock] {End};
+      \draw [arrow] (iterBlock)
+      -- ($ (iterBlock.south) - (0,5mm) $)
+      -| ($ (selection.west) - (5mm,0) $)
+      |- ($ (selection.north) + (0,2.5mm) $);
+      \draw [arrow] (selection)
+      -- node [near start] {no} ($ (selection.east) + (5mm,0) $)
+      |- ($ (end.north) + (0,5mm) $)
+      -- (end);
+    \end{tikzpicture}
+  \end{center}  
+  \begin{cblock}
+while(cond) {
+  iterBlock;
+}
+  \end{cblock}  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Do-while iteration}
+  \begin{center}
+    \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
+      \node(start) [fStartEnd] {Start};
+      \node(iterBlock) [fProcess, below=of start] {\cc{iterBlock}};
+      \draw [arrow] (start) -- (iterBlock);
+      \node(selection) [fSelection, below=of iterBlock] {\cc{Cond}$ == true$?};
+      \draw [arrow] (iterBlock) -- (selection);
+      \draw [arrow] (selection) 
+      -- node [near start] {yes} ($ (selection.west) - (5mm,0) $)
+      |- ($ (iterBlock.north) + (0,2.5mm) $);
+      \node(end) [fStartEnd, below=of selection] {End};
+      \draw [arrow] (selection) -- node [near start] {no} (end);
+    \end{tikzpicture}
+  \end{center}  
+  \begin{cblock}
+do {
+  iterBlock;
+} while(cond);
+  \end{cblock}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{For iteration}
+  \begin{cblock}
+for(iniz; cond; oper) {
+  iterBlock;
+}
+  \end{cblock}
+  is equivalent to:
+  \begin{cblock}
+iniz;
+while(cond) {
+  iterBlock;
+  oper;
+}
+  \end{cblock}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{For iteration}
+  \begin{block}{Example}
+    \cfile{forTest.c}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=\textwidth]{flow_charts.png}
+  \end{center}
+\end{frame}
 \end{document}
