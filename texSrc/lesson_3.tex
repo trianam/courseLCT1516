@@ -73,7 +73,24 @@
     \item Programs compiled with \alert{\texttt{gcc}} inside Cygwin can be executed only inside Cygwin.
     If you want to compile native Windows programs select also \alert{\texttt{mingw-gcc-core}} package during cygwin installation (you can re-run a cygwin installation and add packages), and then compile sources using \alert{\texttt{i686-pc-mingw32-gcc}} instead of \alert{\texttt{gcc}}.
     \item A nice code editor for windows is \alert{notepad++}, you can find it here: \url{https://notepad-plus-plus.org/download/}.
-    \item An alternative to CygWin, easier to install can be \alert{Mingw}, you can find it here: \url{http://www.mingw.org/}. The only needed package is \alert{\texttt{mingw32-base}}.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\texttt{gcc} compiler, Windows alternative}
+  An alternative to CygWin, maybe easier to use, is \alert{Mingw}. With that you can call \texttt{gcc} directly from the Windows command prompt.
+  \begin{block}{Install}
+  \item go to \alert{\url{http://www.mingw.org/}};
+  \item click on \alert{\texttt{download installer}} and execute it;
+  \item follow the instruction and select default options;
+  \item when asked for packages select \alert{\texttt{mingw32-base}} under \texttt{Basic Setup};
+  \item click \alert{\texttt{apply changes}} under \alert{texttt{installation}} menu and close the packet manager when finished;
+  \item right-click on your "My Computer" icon and select "Properties";
+  \item click on the "Advanced" tab, then on the "Environment Variables" button;
+  \item you should be presented with a dialog box with two text boxes. The top box shows your user settings. The PATH entry in this box is the one you want to modify. Note that the bottom text box allows you to change the system PATH variable. You should not alter the system path variable in any manner, or you will cause all sorts of problems for you and your computer!
+  \item click on the PATH entry in the TOP box, then click on the "Edit" button, if PATH don't exists click on "new" and create it;
+  \item scroll to the end of the string and at the end add \alert{\texttt{;C:\MinGW\bin}} (if the string is empty don't insert the ";"), in any case don't delete the possibly existing string;
+  \item press OK -> OK -> OK.
   \end{block}
 \end{frame}
 \end{document}
