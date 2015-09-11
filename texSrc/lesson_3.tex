@@ -64,8 +64,13 @@
     \begin{enumerate}
     \item Open Cygwin from programs or desktop;
     \item type \alert{\texttt{cd /cygdrive/c/Users/[YourName]/Documents}} and you will go on your documents directory;
-    \item go to your preferred working folder (\alert{\texttt{ls}} for listing files and directories, \alert{\texttt{cd}} for changing directory) where you have sources files.
+    \item go to your preferred working folder where you have sources files (\alert{\texttt{ls}} for listing files and directories, \alert{\texttt{cd}} for changing directory, \alert{\texttt{tab}} autocomplete path);
+    \item you can use the \alert{\texttt{gcc}} compiler from here.
     \end{enumerate}
+  \end{block}
+  \begin{block}{Optional}
+    Programs compiled with \alert{\texttt{gcc}} inside Cygwin can be executed only inside Cygwin.
+    If you want to compile native Windows programs select also \alert{\texttt{mingw-gcc-core}} package during cygwin installation (you can re-run a cygwin installation and add packages), and then compile sources using \alert{\texttt{i686-pc-mingw32-gcc}} instead of \alert{\texttt{gcc}}.
   \end{block}
 \end{frame}
 \end{document}
