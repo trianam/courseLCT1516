@@ -52,7 +52,19 @@
   \frametitle{\texttt{gcc} compiler, Windows}
   \begin{block}{Install}
     \begin{enumerate}
-    \item Go to
+    \item Go to \url{https://cygwin.com/install.html};
+    \item download and run on the corresponding \alert{exe} (32 or 64 bits);
+    \item select \alert{Install from internet} and all the default options;
+    \item when prompted, select a near server like \alert{\texttt{http://bo.mirror.gar.it}};
+    \item when the packages list appear click on the + left to \alert{texttt{devel}} and then on \alert{\texttt{skip}} on the left of \alert{\texttt{gcc-core}} package (the word \texttt{skip} will change to a version number);
+    \item click \alert{\texttt{next}} and accept all the question, when finished installing select \alert{\texttt{finish}}.
+    \end{enumerate}
+  \end{block}
+  \begin{block}{First use}
+    \begin{enumerate}
+    \item Open Cygwin from programs or desktop;
+    \item type \alert{\texttt{cd /cygdrive/c/Users/[YourName]/Documents}} and you will go on your documents directory;
+    \item go to your preferred working folder (\alert{\texttt{ls}} for listing files and directories, \alert{\texttt{cd}} for changing directory) where you have sources files.
     \end{enumerate}
   \end{block}
 \end{frame}
