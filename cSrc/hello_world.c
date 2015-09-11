@@ -2,6 +2,7 @@
 
 #include<stdio.h>  //library for input/output
 
-void main() {  //begin of main
+int main(void) {  //begin of main
   printf("Hello world!\n");  //output of string
+  return 0;
 }

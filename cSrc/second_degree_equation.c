@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<math.h>
 
-void main() { //start of main
+int main(void) { //start of main
   float a,b,c;  //definition of variables for coeffients
   float delta;  //definition of variable for delta
   float x1,x2;  //definition of variables for solutions
@@ -33,4 +33,6 @@ void main() { //start of main
   } else {  //if doesn't have real solutions print the error
     printf("The equation doesn't have real solutions.\n");
   }
+
+  return 0;
 }

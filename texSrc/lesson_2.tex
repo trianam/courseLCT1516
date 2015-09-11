@@ -152,8 +152,16 @@ comments */
     \item Is the entry point for the program.
     \end{itemize}
     \begin{cblock}
-void main() {
+int main(void) {
   ...
+  return 0;
+}
+    \end{cblock}
+    or
+    \begin{cblock}
+int main(int argc, char *argv[]) {
+  ...
+  return 0;
 }
     \end{cblock}
   \end{block}
@@ -407,10 +415,8 @@ while(cond) {
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{For iteration}
-  \begin{block}{Example}
-    \cfile{forTest.c}
-  \end{block}
+  \frametitle{For iteration example}
+  \cfile{forTest.c}
 \end{frame}
 
 \begin{frame}

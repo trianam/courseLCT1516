@@ -21,7 +21,7 @@ unsigned int fact(unsigned int n) {
   return r;
 }
 
-void main() {
+int main(void) {
   unsigned int levels;
   unsigned int r,c, curr;
 
@@ -40,4 +40,6 @@ void main() {
     }
     printf("\n"); //print the end of a row
   }
+
+  return 0;
 }

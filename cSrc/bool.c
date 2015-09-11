@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdbool.h>
 
-void main() {
+int main(void) {
   bool bt = true;
   bool bf = false;
   char cp = 1;
@@ -32,4 +32,6 @@ void main() {
   } else {
     printf("false\n");
   }
+
+  return 0;
 }

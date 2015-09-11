@@ -2,7 +2,7 @@
 #include<limits.h>
 #include<float.h>
 
-void main() {
+int main(void) {
   //char
   printf("--------------------------\n");
   printf("INTEGER\n");
@@ -107,4 +107,5 @@ void main() {
   printf("\tepsilon = %Le\n", LDBL_EPSILON);
   printf("--------------------------\n");
 
+  return 0;
 }

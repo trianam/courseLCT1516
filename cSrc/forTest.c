@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void main() {
+int main(void) {
   int i; //initialize var
 
   //iterate from i=1 while i<=42
@@ -9,4 +9,6 @@ void main() {
     printf("*"); //print an *
   }
   printf("\n");
+
+  return 0;
 }
