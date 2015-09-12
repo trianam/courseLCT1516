@@ -275,23 +275,25 @@ var3 = var3 - 1;
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Operators}
+  \frametitle{Operators (in priority order)}
   \begin{block}{Arithmetic}
-    In priority order:
-    \begin{itemize}
+    \begin{enumerate}
     \item \cc{*}, \cc{/}, \cc{\%};
     \item \cc{+}, \cc{-};
-    \end{itemize}
+    \end{enumerate}
   \end{block}
   \begin{block}{Logic}
-    \begin{itemize}
-    \item \cc{&&}, \cc{||};
+    \begin{enumerate}
+      \setcounter{enumi}{1}
     \item \cc{!};
-    \item \cc{==}, \cc{!=}, \cc{<}, \cc{>}, \cc{<=}, \cc{>=}
-    \end{itemize}
+    \item \cc{<}, \cc{>}, \cc{<=}, \cc{>=}
+    \item \cc{==}, \cc{!=};
+    \item \cc{&&};
+    \item \cc{||};
+    \end{enumerate}
   \end{block}
   \begin{itemize}
-  \item Is possible to make groups with \cc{(} and \cc{)}, i.e.:
+  \item Is possible to change order with \cc{(} and \cc{)}, i.e.:
     \begin{cblock}
 (a+b)*c
     \end{cblock}
@@ -417,11 +419,5 @@ while(cond) {
 \begin{frame}[fragile]
   \frametitle{For iteration example}
   \cfile{forTest.c}
-\end{frame}
-
-\begin{frame}
-  \begin{center}
-    \includegraphics[width=\textwidth]{flow_charts.png}
-  \end{center}
 \end{frame}
 \end{document}
