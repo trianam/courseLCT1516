@@ -25,9 +25,12 @@
 
 \colorlet{c1}{green!20}
 \colorlet{c2}{blue!10}
+\colorlet{c3}{yellow!10}
+\colorlet{c4}{red!10}
 \colorlet{drawColor}{black!50}
 \colorlet{commentColor}{green!70!black!90}
 \colorlet{codeBgColor}{yellow!50}
+\colorlet{bashBgColor}{green!50}
 
 \tikzstyle{oval}=[ellipse, align=center, drop shadow, draw=drawColor, fill=white]
 \tikzstyle{rect}=[rectangle, rounded corners=2pt, align=center, drop
@@ -45,6 +48,9 @@ shadow, draw=drawColor, fill=white]
 \tikzstyle{fOutput}=[tape, tape bend top=none, align=center, drop shadow, draw=drawColor, fill=white]
 \tikzstyle{mem}=[rectangle, align=center, draw=drawColor, fill=white]
 \tikzstyle{clo}=[cloud, aspect=2, align=center, drop shadow, draw=drawColor, fill=white]
+\tikzstyle{file}=[chamfered rectangle, chamfered rectangle corners =
+north east, align=center, drop shadow, draw=drawColor, fill=white]
+\tikzstyle{files}=[chamfered rectangle, chamfered rectangle corners = north east, align=center, double copy shadow, draw=drawColor, fill=white]
 
 \lstdefinestyle{customc}{
    language=C,
@@ -60,6 +66,32 @@ shadow, draw=drawColor, fill=white]
    frameround=fttt,
    frame=trBL,
    backgroundcolor=\color{yellow!20},
+   numbers=left,
+   stepnumber=1,    
+   firstnumber=1,
+   numberfirstline=true,
+   numberstyle=\tiny\color{black!50},
+   xleftmargin=2em,
+   framexleftmargin=1.5em,
+   % rulesepcolor=\color{gray},
+   rulecolor=\color{black}
+   % linewidth=8cm,
+}
+
+\lstdefinestyle{customBash}{
+   language=bash,
+   % basicstyle=\small\ttfamily\bfseries,
+   basicstyle=\ttfamily,
+   keywordstyle=\color{blue}\ttfamily,
+   stringstyle=\color{red}\ttfamily,
+   commentstyle=\color{green}\ttfamily,
+   morecomment=[l][\color{magenta}]{\#},
+   % breaklines=false,
+   breaklines=true, breakatwhitespace=false,
+   postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}},
+   frameround=fttt,
+   frame=trBL,
+   backgroundcolor=\color{green!20},
    numbers=left,
    stepnumber=1,    
    firstnumber=1,
@@ -90,11 +122,19 @@ shadow, draw=drawColor, fill=white]
   }
 }
 
+\newcommand{\bb}[2][]{
+  \colorbox{bashBgColor}{
+    \lstinline[style=customBash,#1]`#2`
+  }
+}
+
 \graphicspath{{img/}}
 \lstset{inputpath=../cSrc/}
 
 \newcommand{\me}{\mathrm{e}}
 \newcommand{\C}{\texttt{C}}
+\newcommand{\gcc}{\texttt{gcc}}
+\newcommand{\bash}{\texttt{Bash}}
 
 \definecolor{links}{HTML}{2A1B81}
 \hypersetup{colorlinks,linkcolor=links,urlcolor=links}
