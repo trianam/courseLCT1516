@@ -1,0 +1,175 @@
+%This work is licensed under the Creative Commons
+%Attribution-ShareAlike 4.0 International License. To view a copy of
+%this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or
+%send a letter to Creative Commons, PO Box 1866, Mountain View, CA
+%94042, USA.
+
+%compile with: "pdflatex --shell-escape lesson_5.tex"
+
+\input{header}
+
+\title[Lesson 5]{\textbf{Lesson 5 - Exercise}}
+\date[21/9/15]{\flushright 21 September 2015}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problem}
+  \begin{block}{Background}
+    \footnotesize
+    You work for the \emph{New Horizons} mission. Few months ago the
+    probe flew near \emph{Pluto}, but it is still in the \emph{Kuiper
+      belt} and the mission is not yet concluded.
+
+    The astrophysicists
+    wants you to build a program for calculating when the probe will
+    reach the end of the belt, or more in general when it  will reach
+    a certain distance from the sun.
+  \end{block}
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{img/New_Horizons.png}
+    \includegraphics[width=0.45\textwidth]{img/Kuiper_belt.png}    
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \immediate\write18{wget -O img/whereIs_NewHorizons.svg http://pluto.jhuapl.edu/whereisnh/overview/nhov20150901_0445.svg}
+  \immediate\write18{inkscape -f img/whereIs_NewHorizons.svg -A img/whereIs_NewHorizons.pdf}
+  \begin{columns}[T]
+    \begin{column}{0.65\textwidth}
+      \includegraphics[width=\textwidth]{img/whereIs_NewHorizons.pdf}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \begin{block}{Astronomical Units (AU)}
+        $1\ AU$ is approximately the average distance
+        from the Sun to Earth, and the exact value is:
+        \footnotesize
+        \begin{eqnarray*}
+        1\ AU &=& 149597870700\ m\\
+        &=& 149597870,700\ km          
+        \end{eqnarray*}
+        \normalsize
+      \end{block}
+      \begin{itemize}
+        \footnotesize
+      \item \url{http://pluto.jhuapl.edu/}
+      \item \url{https://www.nasa.gov/mission_pages/newhorizons/main/index.html}
+      \item \url{https://it.wikipedia.org/wiki/New_Horizons}
+      \item \url{https://en.wikipedia.org/wiki/Kuiper_belt}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Model}
+  \begin{block}{Input}
+    \begin{itemize}
+    \item Current \alert{distance} from the Sun (in AU)
+    \item Current \alert{velocity} respect the Sun in radial direction (in km/sec)
+    \item \alert{Target} distance from the Sun (in AU)
+    \end{itemize}
+  \end{block}
+  \begin{block}{Output}
+    \begin{itemize}
+    \item The necessary \alert{time} from now to reach the target (in sec)
+    \end{itemize}
+  \end{block}
+  \begin{block}{Approximations}
+    \begin{itemize}
+    \item New Horizons probe is not going in radial direction respect
+      the sun, but for
+      now we can assume a radial direction and ignore the error
+      \begin{itemize}
+      \item An improvement to the program can be the possibility to
+        specify the angular deviation from the radial direction
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Physics}
+    After the acceleration phases (\url{https://en.wikipedia.org/wiki/Gravity_assist}), probes are moving in \alert{uniform linear
+    motion}, the law that govern it is:
+    \begin{equation*}
+      \Delta x = v \cdot \Delta t
+    \end{equation*}
+    where \alert{$\Delta x$} is the distance covered in \alert{$\Delta t$} time by a
+    body that is moving at a constant velocity \alert{$v$} in a
+    linear direction.
+  \end{block}
+  So if you know the position $x_p$ and the velocity $v_p$ of the
+  probe, and the position $x_t$ of the target in the radial
+  rectilinear direction you can calculate:
+  \begin{eqnarray*}
+    \Delta x&=&x_t - x_p\\
+    \Delta t&=&\frac{\Delta x}{v_p}=\frac{x_t - x_p}{v_p}
+  \end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Unit of measures}
+    For doing the calculations you need coherent unit of measures, so
+    if $x_p$ and $x_t$ are expressed in $AU$ and $v_p$ is in $km/s$,
+    first is necessary to convert $x_p$ and $x_t$ in $km$ using:
+    \begin{eqnarray*}
+      1\ AU&=&149\:597\:870\:700\ m\\
+      &=&149\:597\:870,700\ km          
+    \end{eqnarray*}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Algorithm}
+  \begin{center}
+    \begin{tikzpicture}[node distance=5mm, font=\footnotesize, auto]
+      \node(start) [fStartEnd] {Start};
+
+      \node(input) [fInput, below=of start] {position, velocity, target};
+      \draw [arrow] (start) -- (input);
+
+      \node(selection) [fSelection, below=of input, shape aspect=1] {target\\$>$\\
+        position?};
+      \draw [arrow] (input) -- (selection);
+
+      \node(int1a) [fInt, below=of selection] {1};
+      \draw [arrow] (selection) -- node [near start] {yes} (int1a);
+
+      \node(int2a) [fInt, right=20mm of int1a] {2};
+      \draw [arrow] (selection) -| node [near start] {no} (int2a);
+
+      \node(int1b) [fInt, right=50mm of start] {1};
+      \node(int2b) [fInt, right=25mm of int1b] {2};
+
+      \node(convert1) [fProcess, below=of int1b] {convert position in km};
+      \draw [arrow] (int1b) -- (convert1);
+
+      \node(convert2) [fProcess, below=of convert1] {convert target in km};
+      \draw [arrow] (convert1) -- (convert2);
+
+      \node(calcDistance) [fProcess, below=of convert2]
+      {distance = target - position};
+      \draw [arrow] (convert2) -- (calcDistance);
+   
+      \node(calcTime) [fProcess, below=of calcDistance]
+      {time = distance / velocity};
+      \draw [arrow] (calcDistance) -- (calcTime);
+     
+      \node(output) [fOutput, below=of calcTime] {time};
+      \draw [arrow] (calcTime) -- (output);
+ 
+      \node(outputErr) [fOutput, below=15mm of int2b] {ERROR\\(surpassed)};
+      \draw [arrow] (int2b) -- (outputErr);
+
+      \node(end) [fStartEnd, below=of output] {End};
+      \draw [arrow] (output) -- (end);
+      \draw [arrow] (outputErr) |- ($ (end.north) + (0,2mm) $);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+\end{document}
