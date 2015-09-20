@@ -123,6 +123,18 @@ north east, align=center, drop shadow, draw=drawColor, fill=white]
   }
 }
 
+\lstnewenvironment{bblock}[1][]
+{
+  \lstset{
+    style=customBash,
+    #1
+  }
+}{}
+
+\newcommand{\bfile}[2][]{
+  \lstinputlisting[style=customBash, title={\texttt{\detokenize{#2}}}, #1]{#2}
+}
+
 \newcommand{\bb}[2][]{
   \colorbox{bashBgColor}{
     \lstinline[style=customBash,#1]`#2`

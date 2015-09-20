@@ -420,4 +420,90 @@ while(cond) {
   \frametitle{For iteration example}
   \cfile{forTest.c}
 \end{frame}
+
+\begin{frame}
+  \frametitle{User input/output}
+  \begin{block}{Output: \cc{printf}}
+    \cc{printf(format, var1, var2, ...);}
+    \begin{itemize}
+    \item \cc{format} is a string that contain the text to be send to output
+    \item the format string can contains special chars using \cc{\\}
+      \begin{itemize}
+        \item \cc{\\\\}, \cc{\\"}, \cc{\\\%}, \cc{\\n} (for new line)
+      \end{itemize}
+    \item the format string can contains special \alert{format
+        specifiers}
+      \begin{itemize}
+      \item for each specifier is necessary a corresponding variable
+        \cc{var}
+      \item the output string will be integrated with the value of the
+        variables
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+  \begin{block}{Input: \cc{scanf}}
+    \cc{scanf(format, \&var);}
+    \begin{itemize}
+    \item \cc{format} is a string with only one \alert{format specifier}
+    \item \cc{var} is a variable name (remember to add the special
+      char \cc{\&})
+    \item the input will be saved inside \cc{var}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{format specifiers}
+    \begin{itemize}
+    \item for each \alert{data type} corresponds a \alert{format specifier}
+    \item a format specifier is \cc{\%[length][specifier]}
+    \end{itemize}
+    \begin{center}
+      \small
+      \begin{tabular}{|l||c|c|c|}
+        \hline
+        \multirow{2}{*}{\textbf{Length}} & \multicolumn{3}{c|}{\textbf{Specifier}} \\
+        \cline{2-4}
+        & \cc{d} & \cc{u} & \cc{f} (\cc{e} for $m\, 10^n$) \\
+        \hline
+        \hline
+        (none) & \cc{int} & \cc{unsigned int} & \cc{float}/\cc{double} \\
+        \hline
+        \cc{hh} & \cc{char} & \cc{unsigned char} & \\
+        \hline
+        \cc{h} & \cc{short} & \cc{unsigned short} & \\
+        \hline
+        \cc{l} & \cc{long} & \cc{unsigned long} & \\
+        \hline
+        \cc{L} & & & \cc{long double} \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{block}
+  For example:
+  \begin{itemize}
+  \item \cc{\%d} for \cc{int}
+  \item \cc{\%hu} for \cc{unsigned short}
+  \item \cc{\%Le} for \cc{long double} (expressed in scientific
+    notation)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \cfile{printfScanfExample.c}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{bblock}
+$ gcc printfScanfExample.c -o example
+$ ./example 
+Input\output
+demonstration
+
+Insert a rational number: 12.34
+Insert a long integer: 123456
+Rational is: 12.340000; integer is: 123456
+$
+  \end{bblock}
+\end{frame}
 \end{document}
