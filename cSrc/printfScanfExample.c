@@ -9,5 +9,6 @@ int main(void) {
   printf("Insert a long integer: ");
   scanf("%ld", &longVar);
   printf("Rational is: %f; integer is: %ld\n", floatVar, longVar);
+  printf("Rational in scientific notation: %e\n", floatVar);
   return 0;
 }
