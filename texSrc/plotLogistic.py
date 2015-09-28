@@ -14,7 +14,7 @@ l = 0.2
 
 t = np.arange(0.0, 50.0, 0.01)
 p = k / (1. + ((k-p0)/p0) * np.exp(-l*t))
-plt.plot(t, p, lw=2)
+plt.plot(t, p, 'k', lw=2)
 
 plt.xlabel('$t$')
 plt.ylabel('$p(t)$')
