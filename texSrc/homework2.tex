@@ -1,0 +1,55 @@
+\input{headerExams}
+
+\ExamClass{Logical computational thinking}
+\ExamName{Homework 2}
+\ExamHead{12 October 2015}
+
+\begin{document}
+\ExamNameLine
+\ExamStandardBoxEn
+In Italy physical people pay taxes proportionally to their annual
+incomes. Each person is in a certain income
+class and pays a certain percent of the income as taxes.
+the income class and the relative taxes are expressed in the table:
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    Income class&Class range&Quote for the class&Tax\\
+    \hline
+    \hline
+    1&0\euro{} - 15000\euro&23\%&23\% of income\\
+    \hline
+    2&15000.01\euro{} - 28000\euro&27\%&3450\euro{} + 27\% of the
+    excess from 15000\euro\\
+    \hline
+    3&28000.01\euro{} - 55000\euro&38\%&6960\euro{} + 38\% of the
+    excess from 28000\euro\\
+    \hline
+    4&55000.01\euro{} - 75000\euro&41\%&17220\euro{} + 41\% of the
+    excess from 55000\euro\\
+    \hline
+    5&more than 75000\euro&43\%&25420\euro{} + 43\% of the
+    excess from 75000\euro\\
+    \hline
+  \end{tabular}
+\end{center}
+
+For instance if you earn 10000\euro{} you are in the 1$^{th}$ class,
+and you pay on taxes:
+$$
+\frac{10000}{100}\cdot 23,
+$$
+if you earn 30500\euro{} you are in the 3$^{th}$ class,
+and you pay on taxes:
+$$
+6960+\frac{30500-28000}{100}\cdot 38,
+$$
+if you earn 100000\euro{} you are in the 5$^{th}$ class,
+and you pay on taxes:
+$$
+25420+\frac{100000-75000}{100}\cdot 43.
+$$
+
+Write a program that calculate how much you need to pay in
+taxes, given your income in input.
+\end{document}
