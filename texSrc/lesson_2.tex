@@ -305,12 +305,12 @@ var3 = var3 - 1;
   \begin{center}
     \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
       \node(start) [fStartEnd] {Start};
-      \node(selection) [fSelection, below=of start] {\cc{Cond}$ == true$?};
+      \node(selection) [fSelection, below=of start] {\cc{Cond}};
       \draw [arrow] (start) -- (selection);
       \node(trueBlock) [fProcess, below=of selection] {\cc{trueBlock}};
-      \draw [arrow] (selection) -- node [near start] {yes} (trueBlock);
+      \draw [arrow] (selection) -- node [near start] {true} (trueBlock);
       \node(falseBlock) [fProcess, right=10mm of trueBlock] {\cc{falseBlock}};
-      \draw [arrow] (selection) -| node [near start] {no} (falseBlock);
+      \draw [arrow] (selection) -| node [near start] {false} (falseBlock);
       \node(end) [fStartEnd, below=of trueBlock] {End};
       \draw [arrow] (trueBlock) -- (end);
       \draw [arrow] (falseBlock) |- ($ (end.north) + (0,2mm) $);
@@ -331,14 +331,14 @@ if(cond) {
   \begin{center}
     \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
       \node(start) [fStartEnd] {Start};
-      \node(selection) [fSelection, below=of start] {\cc{Cond}$ == true$?};
+      \node(selection) [fSelection, below=of start] {\cc{Cond}};
       \draw [arrow] (start) -- (selection);
       \node(trueBlock) [fProcess, below=of selection] {\cc{trueBlock}};
-      \draw [arrow] (selection) -- node [near start] {yes} (trueBlock);
+      \draw [arrow] (selection) -- node [near start] {true} (trueBlock);
       \node(end) [fStartEnd, below=of trueBlock] {End};
       \draw [arrow] (trueBlock) -- (end);
       \draw [arrow] (selection)
-      -- node [near start] {no} ($ (selection.east) + (5mm,0) $)
+      -- node [near start] {false} ($ (selection.east) + (5mm,0) $)
       |- ($ (end.north) + (0,2mm) $);
     \end{tikzpicture}
   \end{center}  
@@ -354,17 +354,17 @@ if(cond) {
   \begin{center}
     \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
       \node(start) [fStartEnd] {Start};
-      \node(selection) [fSelection, below=of start] {\cc{Cond}$ == true$?};
+      \node(selection) [fSelection, below=of start] {\cc{Cond}};
       \draw [arrow] (start) -- (selection);
       \node(iterBlock) [fProcess, below=of selection] {\cc{iterBlock}};
-      \draw [arrow] (selection) -- node [near start] {yes} (iterBlock);
+      \draw [arrow] (selection) -- node [near start] {true} (iterBlock);
       \node(end) [fStartEnd, below=15mm of iterBlock] {End};
       \draw [arrow] (iterBlock)
       -- ($ (iterBlock.south) - (0,5mm) $)
       -| ($ (selection.west) - (5mm,0) $)
       |- ($ (selection.north) + (0,2.5mm) $);
       \draw [arrow] (selection)
-      -- node [near start] {no} ($ (selection.east) + (5mm,0) $)
+      -- node [near start] {false} ($ (selection.east) + (5mm,0) $)
       |- ($ (end.north) + (0,5mm) $)
       -- (end);
     \end{tikzpicture}
@@ -383,13 +383,13 @@ while(cond) {
       \node(start) [fStartEnd] {Start};
       \node(iterBlock) [fProcess, below=of start] {\cc{iterBlock}};
       \draw [arrow] (start) -- (iterBlock);
-      \node(selection) [fSelection, below=of iterBlock] {\cc{Cond}$ == true$?};
+      \node(selection) [fSelection, below=of iterBlock] {\cc{Cond}};
       \draw [arrow] (iterBlock) -- (selection);
       \draw [arrow] (selection) 
-      -- node [near start] {yes} ($ (selection.west) - (5mm,0) $)
+      -- node [near start] {true} ($ (selection.west) - (5mm,0) $)
       |- ($ (iterBlock.north) + (0,2.5mm) $);
       \node(end) [fStartEnd, below=of selection] {End};
-      \draw [arrow] (selection) -- node [near start] {no} (end);
+      \draw [arrow] (selection) -- node [near start] {false} (end);
     \end{tikzpicture}
   \end{center}  
   \begin{cblock}

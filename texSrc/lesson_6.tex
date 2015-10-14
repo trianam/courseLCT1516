@@ -1,0 +1,100 @@
+%This work is licensed under the Creative Commons
+%Attribution-ShareAlike 4.0 International License. To view a copy of
+%this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or
+%send a letter to Creative Commons, PO Box 1866, Mountain View, CA
+%94042, USA.
+
+\input{header}
+
+\title[Lesson 6]{\textbf{Lesson 6 - Boolean logic and iterations}}
+\date[15/10/15]{\flushright 15 October 2015}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Boolean logic}
+  \begin{block}{Predicate}
+    A function
+    $$
+    P:X\rightarrow \{true,false\}
+    $$
+    from a certain set $X$ (for istance $\mr\times\mr$) to a truth value. Can be: \cc{<}, \cc{>},
+    \cc{<=} ($\leq$), \cc{>=} ($\geq$), \cc{==} ($=$), \cc{!=} ($\neq$)
+    
+  \end{block}
+  \begin{block}{Logical connective}
+    Technically predicates in the set:
+    $\{true,false\}\times\{true,false\}$ ($\{true,false\}$ for the
+    negation), can connect different expressions together. can be:
+    \cc{\&\&} ($\wedge$), \cc{||} ($\vee$), \cc{!} ($\neg$).
+    \begin{center}
+      \begin{tabular}{|c|c||c|c|c|}
+        \hline
+        $a$ & $b$ & $\neg a$ & $a\wedge b$ & $a\vee b$ \\
+        \hline
+        0 & 0 & 1 & 0 & 0 \\
+        0 & 1 & 1 & 0 & 1 \\
+        1 & 0 & 0 & 0 & 1 \\
+        1 & 1 & 0 & 1 & 1 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{block}
+\end{frame}
+\begin{frame}
+  \begin{block}{Boolean expression}
+    An expression that produce a boolean value when evaluated (true,
+    false). Can be composed from
+    \begin{itemize}
+    \item variables
+    \item predicates
+    \item connectives
+    \item parenthesis
+    \end{itemize}
+  \end{block}
+  for instance:
+  \begin{itemize}
+  \item \cc{a<3}
+  \item \cc{(a>5) \&\& (a<10)}
+  \item \cc{(a<b) || !(a>=10 \&\& b<=5)}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Iterations}
+  \begin{center}
+    \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
+      \node(start1) [fStartEnd] {Start};
+      \node(selection1) [fSelection, below=of start1] {\cc{Cond}};
+      \draw [arrow] (start1) -- (selection1);
+      \node(iterBlock1) [fProcess, below=of selection1] {\cc{iterBlock}};
+      \draw [arrow] (selection1) -- node [near start] {true} (iterBlock1);
+      \node(end1) [fStartEnd, below=15mm of iterBlock1] {End};
+      \draw [arrow] (iterBlock1)
+      -- ($ (iterBlock1.south) - (0,5mm) $)
+      -| ($ (selection1.west) - (5mm,0) $)
+      |- ($ (selection1.north) + (0,2.5mm) $);
+      \draw [arrow] (selection1)
+      -- node [near start] {false} ($ (selection1.east) + (5mm,0) $)
+      |- ($ (end1.north) + (0,5mm) $)
+      -- (end1);
+      
+      \node(start2) [fStartEnd, right=50mm of start1] {Start};
+      \node(iterBlock2) [fProcess, below=of start2] {\cc{iterBlock}};
+      \draw [arrow] (start2) -- (iterBlock2);
+      \node(selection2) [fSelection, below=of iterBlock2] {\cc{Cond}};
+      \draw [arrow] (iterBlock2) -- (selection2);
+      \draw [arrow] (selection2) 
+      -- node [near start] {true} ($ (selection2.west) - (5mm,0) $)
+      |- ($ (iterBlock2.north) + (0,2.5mm) $);
+      \node(end2) [fStartEnd, below=of selection2] {End};
+      \draw [arrow] (selection2) -- node [near start] {false} (end2);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\end{document}
