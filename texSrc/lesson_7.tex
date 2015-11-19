@@ -325,4 +325,63 @@ do {
   \end{columns}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Iteration 3}
+  \begin{columns}
+    \begin{column}{0.33\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
+          \node(start) [fGeneric] {...};
+          \node(iterBlockA) [fGeneric, below=of start] {A};
+          \node(selection) [fSelection, below=of iterBlockA] {condition};
+          \draw [arrow] (start) -- (iterBlockA);
+          \draw [arrow] (iterBlockA) -- (selection);
+          \node(iterBlockB) [fGeneric, below=of selection] {B};
+          \draw [arrow] (selection) -- node [near start] {true} (iterBlockB);
+          \node(end) [fGeneric, below=15mm of iterBlockB] {...};
+          \draw [arrow] (iterBlockB)
+          -- ($ (iterBlockB.south) - (0,5mm) $)
+          -| ($ (selection.west) - (5mm,0) $)
+          |- ($ (iterBlockA.north) + (0,2.5mm) $);
+          \draw [arrow] (selection)
+          -- node [near start] {false} ($ (selection.east) + (5mm,0) $)
+          |- ($ (end.north) + (0,5mm) $)
+          -- (end);
+        \end{tikzpicture}
+      \end{center}  
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \begin{center}
+        \begin{tikzpicture}
+          \node[arrowNode]{Transforms};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[node distance=5mm, font=\tiny, auto]
+          \node(start) [fGeneric] {...};
+          \node(iterBlockA) [fGeneric, below=of start] {A};
+          \node(selection) [fSelection, below=of iterBlockA] {condition};
+          \draw [arrow] (start) -- (iterBlockA);
+          \draw [arrow] (iterBlockA) -- (selection);
+          \node(iterBlockB) [fGeneric, below=of selection] {B};
+          \draw [arrow] (selection) -- node [near start] {true} (iterBlockB);
+          \node(iterBlockA2) [fGeneric, below=of iterBlockB] {A};
+          \draw [arrow] (iterBlockB) -- (iterBlockA2);
+          \node(end) [fGeneric, below=15mm of iterBlockA2] {...};
+          \draw [arrow] (iterBlockA2)
+          -- ($ (iterBlockA2.south) - (0,5mm) $)
+          -| ($ (selection.west) - (5mm,0) $)
+          |- ($ (selection.north) + (0,2.5mm) $);
+          \draw [arrow] (selection)
+          -- node [near start] {false} ($ (selection.east) + (5mm,0) $)
+          |- ($ (end.north) + (0,5mm) $)
+          -- (end);
+        \end{tikzpicture}
+      \end{center}  
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \end{document}
