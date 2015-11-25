@@ -7,6 +7,29 @@
 \usepackage{mathexam}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes, chains, scopes, shadows, positioning, arrows,
+  decorations.pathmorphing, calc}
+
+\colorlet{c1}{green!20}
+\colorlet{c2}{blue!10}
+\colorlet{c3}{yellow!10}
+\colorlet{c4}{red!10}
+\colorlet{drawColor}{black!50}
+\colorlet{commentColor}{green!70!black!90}
+\colorlet{codeBgColor}{yellow!50}
+\colorlet{bashBgColor}{green!50}
+
+\tikzstyle{arrow}=[->, very thick, >=stealth', draw=black!80]
+\tikzstyle{fInt}=[circle, align=center, draw=drawColor, fill=white]
+\tikzstyle{fStartEnd}=[ellipse, align=center, draw=drawColor, fill=white]
+\tikzstyle{fInput}=[trapezium, trapezium left angle=70, trapezium right angle=110,
+align=center, draw=drawColor, fill=white]
+\tikzstyle{fProcess}=[rectangle, align=center, draw=drawColor, fill=white]
+\tikzstyle{fSelection}=[diamond, shape aspect=3, align=center, draw=drawColor, fill=white]
+\tikzstyle{fOutput}=[tape, tape bend top=none, align=center, draw=drawColor, fill=white]
+\tikzstyle{fGeneric}=[cloud, align=center, draw=drawColor, fill=white]
+
 
 \let\ds\displaystyle
 
@@ -24,3 +47,12 @@
     un cierto valor es un input, donde encontraste las informaciones
     sobre los tipos de datos, porque hiciste una particular eleci\'on,
     etc\dots)}}
+\newcommand{\ExamDiagramBoxEn}{\ExamInstrBox{Translate the following
+    diagram in \textbf{code}.}}
+\newcommand{\ExamCompleteBoxEn}{\ExamInstrBox{Read carefully the
+    problem, then identify the important parts, make a \textbf{model},
+    and a \textbf{flow chart}. Remember to describe all the passages
+    that brings you to give a certain answer (why a certain value is
+    an input, where you found information on the data type, why you
+    made a certain choice, etc\dots). After that write the
+    corresponding \textbf{code} of the flow chart.}} 

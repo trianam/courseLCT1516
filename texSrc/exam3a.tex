@@ -1,0 +1,50 @@
+\input{headerExams}
+
+\ExamClass{Logical computational thinking}
+\ExamName{Exam 3 A}
+\ExamHead{25 November 2015}
+
+\begin{document}
+\ExamNameLine
+
+\ExamDiagramBoxEn
+All the variables are natural.
+\begin{center}
+  \begin{tikzpicture}[node distance=5mm, auto]
+    \node(start) [fStartEnd] {Start};
+    \node(inputN) [fInput, below=of start] {n};
+    \draw [arrow] (start) -- (inputN);
+    \node(selection) [fSelection, below=of inputN] {n>100};
+    \draw [arrow] (inputN) -- (selection);
+    \node(iteration) [fSelection, below=7mm of selection] {n<200};
+    \draw [arrow] (selection) -- node[near start] {true} (iteration);
+    \node(assignation) [fProcess, below=of iteration] {i=2*n};
+    \draw [arrow] (iteration) -- node [near start] {true} (assignation);
+    \node(output) [fOutput, below=of assignation] {i};
+    \draw [arrow] (assignation) -- (output);
+    \node(increment) [fProcess, below=of output] {n=n+1};
+    \draw [arrow] (output) -- (increment);
+    \node(end) [fStartEnd, below=20mm of increment] {End};
+    \draw [arrow] (increment)
+    -- ($ (increment.south) - (0,5mm) $)
+    -| ($ (iteration.west) - (5mm,0) $)
+    |- ($ (iteration.north) + (0,2.5mm) $);
+    \draw [arrow] (iteration)
+    -- node [near start] {false} ($ (iteration.east) + (5mm,0) $)
+    |- ($ (end.north) + (0,10mm) $)
+    -- (end);
+    \node (output2) [fOutput, right=10mm of iteration] {``n too small''};
+    \draw [arrow] (selection)
+    -| node [near start] {false} (output2);
+    \draw [arrow] (output2)
+    |- ($ (end.north) + (0,5mm) $);
+  \end{tikzpicture}
+\end{center}  
+\newpage
+\ExamCompleteBoxEn
+Write a program that read a natural number ``$n$'' and calculate and
+write the sum:
+$$
+1+\frac{1}{2}+\frac{1}{3}+\dots+\frac{1}{n}
+$$
+\end{document}
